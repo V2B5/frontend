@@ -103,7 +103,7 @@ function EventoList() {
 
   return (
     <div className="container">
-      <h4 className="text-center my-4 font-weight-bold">Eventos</h4>
+      <h1 className="text-primary mb-4 fw-bold" align="center">Eventos</h1>
       <div className="row mb-4">
         <div className="col-md-6">
           <select className="form-select" value={areaId} onChange={handleAreaChange}>

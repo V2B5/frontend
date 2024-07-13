@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Select, MenuItem, FormControl, InputLabel, Typography } from '@mui/material';
 import ValidacaoEventos from './validacaoEvento';
 import ValidacaoEstabelecimentos from './validacaoEstabelecimento';
 import ValidacaoAvaliacaoEvento from './validacaoAvaliacaoEvento';
 import ValidacaoAvaliacaoEstabelecimento from './validacaoAvaliacaoEstabelecimento';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Validacao = () => {
   const [opcaoSelecionada, setOpcaoSelecionada] = useState('');
@@ -23,24 +23,28 @@ const Validacao = () => {
       case 'avaliacaoEstabelecimento':
         return <ValidacaoAvaliacaoEstabelecimento />;
       default:
-        return <Typography variant="h6">Selecione uma opção para validação</Typography>;
+        return <h6 className="text-muted">Seleciona uma opção para validar</h6>;
     }
   };
 
   return (
-    <div style={{ width: '80%', margin: '0 auto' }}>
-      <Typography variant="h4" component="h1" gutterBottom sx={{ color: '#1D324F', marginBottom: 4, fontWeight: 'bold' }}>
-        Validação
-      </Typography>
-      <FormControl fullWidth margin="dense">
-        <InputLabel>Selecione a validação</InputLabel>
-        <Select value={opcaoSelecionada} onChange={handleChange}>
-          <MenuItem value="eventos">Eventos</MenuItem>
-          <MenuItem value="estabelecimentos">Estabelecimentos</MenuItem>
-          <MenuItem value="avaliacaoEvento">Avaliação de Eventos</MenuItem>
-          <MenuItem value="avaliacaoEstabelecimento">Avaliação de Estabelecimentos</MenuItem>
-        </Select>
-      </FormControl>
+    <div className="container my-5">
+      <h1 className="text-primary mb-4 fw-bold" align="center" >Validação</h1>
+      <div className="mb-3">
+        <label htmlFor="selectValidation" className="form-label">Selecione a validação</label>
+        <select
+          id="selectValidation"
+          className="form-select"
+          value={opcaoSelecionada}
+          onChange={handleChange}
+        >
+          <option value="">Selecione...</option>
+          <option value="eventos">Eventos</option>
+          <option value="estabelecimentos">Estabelecimentos</option>
+          <option value="avaliacaoEvento">Avaliação de Eventos</option>
+          <option value="avaliacaoEstabelecimento">Avaliação de Estabelecimentos</option>
+        </select>
+      </div>
       {renderGrelha()}
     </div>
   );

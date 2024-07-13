@@ -75,14 +75,22 @@ const Grafico = () => {
     const eventosPorMes = {};
 
     eventos.forEach(evento => {
-      const mesAno = new Date(evento.data).toLocaleDateString('pt-PT', { month: 'long', year: 'numeric' });
+      const data = new Date(evento.data);
+      const mesAno = `${data.getFullYear()}-${data.getMonth() + 1}`; // Formato YYYY-MM para fácil ordenação
       if (!eventosPorMes[mesAno]) {
-        eventosPorMes[mesAno] = { mes: mesAno, total: 0 };
+        eventosPorMes[mesAno] = { mes: `${data.toLocaleDateString('pt-PT', { month: 'long', year: 'numeric' })}`, total: 0 };
       }
       eventosPorMes[mesAno].total++;
     });
 
-    return Object.values(eventosPorMes);
+    const eventosPorMesArray = Object.values(eventosPorMes);
+    eventosPorMesArray.sort((a, b) => {
+      const [anoA, mesA] = a.mes.split(' ');
+      const [anoB, mesB] = b.mes.split(' ');
+      return (anoA - anoB) || (new Date(`${mesA} 1, ${anoA}`).getMonth() - new Date(`${mesB} 1, ${anoB}`).getMonth());
+    });
+
+    return eventosPorMesArray;
   };
 
   return (
