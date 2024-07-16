@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Grid, Typography } from '@mui/material';
-import { styled } from '@mui/system';
+//import { styled } from '@mui/system';
+import styled from '@emotion/styled';
 import Validacoes from './MostValidated';
 import Comentadas from './MostComments';
 import Vista from './MostViewed';
