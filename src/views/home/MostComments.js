@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Card, CardContent, Typography } from "@mui/material";
-import { styled } from "@mui/system";
+//import { styled } from '@mui/system';
+import styled from '@emotion/styled';
 import { Link } from "react-router-dom";
 import api from '../api/api';
 
